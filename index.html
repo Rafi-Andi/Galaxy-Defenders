@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="manifest" href="manifest.json">
+  </head>
+  <body>
+            <div id="install-banner" style="display: none; position: fixed; bottom: 20px; width: 100%; text-align: center;">
+            <button  id="install-btn" style="padding: 10px 20px;  color: black; background-color: rgb(0, 162, 255); border: none; border-radius: 5px;">
+        Install Galaxy Defenders
+            </button>
+        </div>
+    <div class="game-menu" id="gameMenu">
+        <header>
+            <h1 style="color: white; font-size: 60px;">Galaxy</h1>
+            <h2 style="color: rgb(0, 208, 255);">Defender</h2>
+            <p>Space shooter</p>
+            <img src="./img/Player Space Ship.png" width="100px" alt="">
+        </header>
+
+        <div class="input">
+            <label for="nameInput">Pilot Name</label>
+            <input type="text" id="nameInput" placeholder="Enter your name">
+        </div>
+
+        <div class="card-content">
+            <div class="card-menu">
+                <h1>🎯</h1>
+                <div>
+                    <h3>Mission</h3>
+                    <p>Destroy all alien invaders before they reach Earth. Survive 10 waves of enemies to save humanity</p>
+                </div>
+            </div>
+            <div class="card-menu">
+                <h1>🕹️</h1>
+                <div>
+                    <h3>Controls</h3>
+                    <p><- -> A D Move - Space Shoot - P Pause</p>
+                </div>
+            </div>
+            <div class="card-menu">
+                <h1>⚡</h1>
+                <div>
+                    <h3>Scoring</h3>
+                    <p>Earn points per alien destroyed. Each wave brings stronger and faster alien forces</p>
+                </div>
+            </div>
+        </div>  
+        <div class="container-button">
+            <button class="btn-primary" id="btnStartGame">Start Game</button>
+            <button class="btn-secondary" id="btnHowToPlay">How To Play</button>
+            <button class="btn-secondary" id="btnHighScore">High Score</button>
+        </div>
+
+    </div>
+    <div class="game-leaderboard hidden" id="gameLeaderboard">
+        <div style="background-color: rgb(6, 6, 49); display: flex; flex-direction: column; padding: 10px; border-radius: 10px;">
+            <h1 style="text-align: center;">High Scores</h1>
+            <table>
+                <thead style="padding: 20px; background-color: rgb(22, 10, 84);">
+                    <td>Rank</td>
+                    <td>Name</td>
+                    <td>Score</td>
+                    <td>Wave</td>
+                </thead>
+                <tbody id="leaderboardContent">
+
+                </tbody>
+            </table>
+        </div>
+        <button class="btn-primary" id="backMenuLeaderboard">Back To Menu</button>
+    </div>
+    <div class="game-tutor hidden" id="gameTutor">
+        <h1>How To Play</h1>
+        <div class="tutor-content">
+            <div class="card">
+                <h3> <- -> </h1>
+                <p>Move Your space ships left and right</p>
+            </div>
+            <div class="card">
+                <h3>SPACE</h3>
+                <p>Fire your weapons to destroy alien invaders</p>
+            </div>
+            <div class="card">
+                <h3>P</h1>
+                <p>Pause or resume the game at any time</p>
+            </div>
+            <div class="card">
+                <h3>🎯 </h1>
+                <p>Destroy all aliens in each wave to advance to the next level</p>
+            </div>
+            <div class="card">
+                <h3>❤️ </h1>
+                <p>You have 3 lives. Getting hit by enemy bullets costs 1 life</p>
+            </div>
+            <div class="card">
+                <h3>🏆 </h1>
+                <p>Score points for each alient destroyed. Bonus for completing waves!</p>
+            </div>
+        </div>
+
+        <div class="enemy-types">
+            <h4 style="color: pink; margin-bottom: 3rem;">Enemy types</h4>
+            <div>
+                <div class="card-enemy">
+                    <img src="./img/Alien Red.png" width="30px" walt="">
+                    <p>Red Alient - 30pts</p>
+                </div>
+                <div class="card-enemy">
+                    <img src="./img/Alien Blue.png" width="30px" walt="">
+                    <p>Blue Alient - 20pts</p>
+                </div>
+                <div class="card-enemy">
+                    <img src="./img/Alien Green.png" width="30px" walt="">
+                    <p>Green Alient - 20pts</p>
+                </div>
+            </div>
+        </div>
+        <button class="btn-primary" id="tutorBackToMenu">Back To Menu</button>
+    </div>
+    <div class="game-section hidden" id="gameSection">
+      <canvas
+        id="canvas"
+        width="1275"
+        height="630"
+      ></canvas>
+      <div id="mobile-controls" class="mobile-only">
+    <div class="movement-btns">
+        <button id="btnLeft" class="control-btn">◀</button>
+        <button id="btnRight" class="control-btn">▶</button>
+    </div>
+    <button id="btnShoot" class="control-btn shoot-btn">🔥</button>
+</div>
+    </div>
+
+    <div class="game-pause-section hidden " id="gamePauseSection">
+        <div class="game-pause-content">
+            <h1>Paused</h1>
+            <p style="color: gray;">Press <span style="background-color: navy; color: white; border: 1px solid blue;">P</span> to resume</p>
+            <button id="btnResume" class="btn-primary">Resume</button>
+            <button id="btnQuit" class="btn-secondary">Quit to menu</button>
+        </div>
+    </div>
+
+    <div class="game-final-section hidden" id="gameFinalSection">
+      <div class="game-final-content">
+        <header>
+          <h1 style="text-align: center" id="titleGameFinal"></h1>
+          <img src="./img/GameOver Banner.png" width="100%" alt="" id="bannerGameFinal"/>
+        </header>
+        <div class="stats-final">
+          <div>
+            <h6 style="color: gray;">FINAL SCORE</h6 style="color: gray;">
+            <h1 id="finalScore">560</h1>
+          </div>
+          <div>
+            <h6 style="color: gray;">WAVES SURVIVED</h6 style="color: gray;">
+            <h1 id="finalWave">2</h1>
+          </div>
+          <div>
+            <h6 style="color: gray;">ALIENS DESTROYED</h6 style="color: gray;">
+            <h1 id="finalAliens">18</h1>
+          </div>
+        </div>
+        <div class="best-score" id="containerBestScore">
+            <h6 id="messageFinal">Your Best</h6>
+            <p id="finalBest" style="margin-top: 1rem;"></p>
+        </div>
+        <div class="container-button">
+            <button id="btnPlayAgain" class="btn-primary">Play Again</button>
+            <button id="btnMenuFinal" class="btn-secondary">Main Menu</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

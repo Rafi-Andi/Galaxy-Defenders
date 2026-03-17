@@ -1,0 +1,16 @@
+{
+  "name": "Galaxy Defenders",
+  "short_name": "GD",
+  "start_url": "/",
+  "orientation": "portrait-primary",
+  "display": "standalone",
+  "color": "blue",
+  "background_color": "blue",
+  "icons": [
+    {
+      "src": "./img/Explose.png",
+      "sizes": "192x192", 
+      "type": "image/png"
+    }
+  ]
+}
